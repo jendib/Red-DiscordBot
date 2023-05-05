@@ -175,13 +175,6 @@ def init_events(bot, cli_flags):
 
         outdated_red_message = ""
         rich_outdated_message = ""
-        with contextlib.suppress(aiohttp.ClientError, asyncio.TimeoutError):
-            pypi_version, py_version_req = await fetch_latest_red_version_info()
-            outdated = pypi_version and pypi_version > red_version_info
-            if outdated:
-                outdated_red_message, rich_outdated_message = get_outdated_red_messages(
-                    pypi_version, py_version_req
-                )
 
         rich_console = rich.get_console()
         rich_console.print(INTRO, style="red", markup=False, highlight=False)
